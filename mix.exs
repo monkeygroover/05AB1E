@@ -34,7 +34,6 @@ defmodule Osabie.MixProject do
       {:mock, "~> 0.3.7"}
     ]
   end
-
   defp escript do
     [
       main_module: Osabie.CLI
