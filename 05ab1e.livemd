@@ -3,7 +3,10 @@
 ## Dependencies
 
 ```elixir
-Mix.install([{:kino, github: "livebook-dev/kino"}])
+Mix.install([
+  {:kino, github: "livebook-dev/kino"},
+  {:osabie, github: "monkeygroover/05AB1E", branch: "livebook"}
+])
 ```
 
 ```elixir
@@ -17,6 +20,12 @@ input = Kino.Input.text("Input:")
 ## Part 1
 
 ```elixir
-input =
-  Kino.Input.read(input)
+alias Reading.Reader
+alias Parsing.Parser
+alias Interp.Interpreter
+alias Interp.Stack
+alias Interp.Environment
+alias Interp.Output
+alias Interp.Globals
+alias Interp.Canvas
 ```
