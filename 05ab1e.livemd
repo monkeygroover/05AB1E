@@ -1,0 +1,22 @@
+# 05ab1e
+
+## Dependencies
+
+```elixir
+Mix.install([{:kino, github: "livebook-dev/kino"}])
+```
+
+```elixir
+code = Kino.Input.text("Code:")
+```
+
+```elixir
+input = Kino.Input.text("Input:")
+```
+
+## Part 1
+
+```elixir
+input =
+  Kino.Input.read(input)
+```
