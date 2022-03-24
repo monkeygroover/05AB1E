@@ -57,19 +57,21 @@ defmodule Osabie.CLI do
             Globals.set(%{Globals.get() | lazy: false})
         end
 
-        # Run the code and retrieve the last element of the stack
-        commands = Parser.parse(Reader.read(Enum.join(Reader.read_file(file_name, encoding), "")))
-        {stack, environment} = Interpreter.interp(commands, %Stack{}, %Environment{})
+        :eflame.apply(fn() ->
+            # Run the code and retrieve the last element of the stack
+            commands = Parser.parse(Reader.read(Enum.join(Reader.read_file(file_name, encoding), "")))
+            {stack, environment} = Interpreter.interp(commands, %Stack{}, %Environment{})
 
-        if Globals.get().canvas.canvas != %{} and Globals.get().canvas.on_stack == false do
-            Output.print(Canvas.canvas_to_string(Globals.get().canvas))
-        else
-            {last, _, _} = Stack.pop(stack, environment)
-            case Globals.get().printed do
-                true -> nil
-                false -> Output.print(last)
+            if Globals.get().canvas.canvas != %{} and Globals.get().canvas.on_stack == false do
+                Output.print(Canvas.canvas_to_string(Globals.get().canvas))
+            else
+                {last, _, _} = Stack.pop(stack, environment)
+                case Globals.get().printed do
+                    true -> nil
+                    false -> Output.print(last)
+                end
             end
-        end
+        end, [])
     end
 
     def normalize_args(args), do: normalize_args(args, %OsabieProgramArguments{})
