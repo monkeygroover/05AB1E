@@ -886,6 +886,7 @@ defmodule UnaryTest do
         assert evaluate("144ÅF") == [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144]
         assert evaluate("1ÅF") == [0, 1, 1]
         assert evaluate("0ÅF") == [0]
+        assert evaluate("5Ý1/Åf") == [0, 1, 1, 2, 3, 5]
     end
 
     test "lucas numbers" do

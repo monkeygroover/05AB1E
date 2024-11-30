@@ -430,6 +430,7 @@ defmodule Commands.IntCommands do
     @doc """
     Tail call optimized version of the Fibonacci sequence
     """
+    def fibonacci(index) when is_float(index), do: fibonacci(trunc(index))
     def fibonacci(0), do: 0
     def fibonacci(1), do: 1
     def fibonacci(index) when index > 1, do: fibonacci(index, 0, 1)
